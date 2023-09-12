@@ -31,4 +31,4 @@ done
 
 ffmpeg -f concat -safe 0 -i concat_list.txt -c copy output.mp4
 
-rm concat_list.txt
+rm -f concat_list.txt
