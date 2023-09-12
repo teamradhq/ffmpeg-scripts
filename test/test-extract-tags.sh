@@ -1,16 +1,6 @@
 #!/usr/bin/env bash
-
-# Remove the provided keys from the json
-json_excluding_keys() {
-  local json=$1
-  shift
-  for key; do
-    json=$(echo "$json" | jq "del(.exif.${key})")
-  done
-  echo "$json"
-}
-
-
+DIR="$(dirname "$0")"
+source "$DIR/functions.sh"
 
 test_exit_if_no_arguments_passed()
 {
@@ -40,17 +30,8 @@ test_mp3_json_is_correct() {
   actual=$(./bin/extract-tags.sh ./test/mp3-example.mp3 | jq -c .)
   expected=$(jq -c . < ./test/mp3-example.json)
 
-  keys_to_exclude=(
-    "ExifToolVersion"
-    "FileSize"
-    "FileModifyDate"
-    "FileAccessDate"
-    "FileInodeChangeDate"
-    "FilePermissions"
-  )
-
-  actual=$(json_without_specified_keys "$actual" "${keys_to_exclude[@]}")
-  expected=$(json_without_specified_keys "$expected" "${keys_to_exclude[@]}")
+  actual=$(json_tag_data "$actual")
+  expected=$(json_tag_data "$expected")
 
   assertEquals "${expected}" "${actual}"
 }

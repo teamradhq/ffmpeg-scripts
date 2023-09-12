@@ -1,0 +1,11 @@
+{
+  "TIT2 (Title/songname/content description)": "The Name",
+  "TPE1 (Lead performer(s)/Soloist(s))": "Some Artist",
+  "TALB (Album/Movie/Show title)": "The Album",
+  "TYER (Year)": "2020",
+  "COMM (Comments)": "(ID3v1 Comment)[XXX]",
+  "mp3_info": {
+    "Bitrate": " 320KBps",
+    "Frequency": " 44KHz"
+  }
+}
