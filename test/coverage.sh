@@ -19,7 +19,7 @@ COVERAGE_DIR=$(pwd)"/coverage"
 mkdir -p $INDIVIDUAL_COVERAGE_DIR
 
 for test_script in test/test-*.sh; do
-    kcov $INDIVIDUAL_COVERAGE_DIR/$(basename $test_script) $test_script
+    kcov --exclude-path=$(pwd)/test --include-path=$(pwd)/bin $INDIVIDUAL_COVERAGE_DIR/$(basename $test_script) $test_script
 done
 
 mkdir -p $COVERAGE_DIR
