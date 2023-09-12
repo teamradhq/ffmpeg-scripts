@@ -1,3 +1,5 @@
+DIR="$(dirname "$0")"
+FIXTURE_DIR=$(realpath "$DIR/fixtures")
 
 # Remove the provided keys from the json.
 json_excluding_keys() {
@@ -32,5 +34,5 @@ generate_test_video()
 {
   local fileName=$1
   local color=$2
-  ffmpeg -f lavfi -i color=c=$color:s=10x10:d=30 -c:v libx264 -t 30 "test/fixtures/$fileName"
+  ffmpeg -y -f lavfi -i color=c=$color:s=10x10:d=30 -c:v libx264 -t 30 "$FIXTURE_DIR/$fileName" > /dev/null 2>&1
 }
