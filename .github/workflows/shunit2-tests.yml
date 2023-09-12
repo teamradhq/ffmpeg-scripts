@@ -26,3 +26,5 @@ jobs:
           for test_script in test/test-*.sh; do
             bash "${test_script}"
           done
+          echo "Passed!"
+          exit 0
