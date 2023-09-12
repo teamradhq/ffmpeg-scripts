@@ -27,8 +27,8 @@ test_exit_if_file_does_not_exist()
 }
 
 test_mp3_json_is_correct() {
-  actual=$(./bin/extract-tags.sh ./test/mp3-example.mp3 | jq -c .)
-  expected=$(jq -c . < ./test/mp3-example.json)
+  actual=$(./bin/extract-tags.sh ./test/fixtures/mp3-example.mp3 | jq -c .)
+  expected=$(jq -c . < ./test/fixtures/mp3-example.json)
 
   actual=$(json_tag_data "$actual")
   expected=$(json_tag_data "$expected")

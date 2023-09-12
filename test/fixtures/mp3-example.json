@@ -1,9 +1,9 @@
 {
   "exif": {
-    "SourceFile": "./test/mp3-example.mp3",
+    "SourceFile": "./test/fixtures/mp3-example.mp3",
     "ExifToolVersion": 12.60,
     "FileName": "mp3-example.mp3",
-    "Directory": "./test",
+    "Directory": "./test/fixtures",
     "FileSize": "152 kB",
     "FileModifyDate": "2023:09:12 15:26:14+10:00",
     "FileAccessDate": "2023:09:12 15:32:11+10:00",
