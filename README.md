@@ -17,13 +17,13 @@ The following tools are required for these scripts to work:
 - `ffmpeg` 
 - `id3lib`
 - `jq`
+- `shunit2`
 
 Install using Homebrew:
 
 ```bash
-brew install exiftool ffmpeg id3lib jq
+brew install exiftool ffmpeg id3lib jq shunit2
 ```
-
 
 ---
 
@@ -51,3 +51,18 @@ For video processing, you should ensure a few things:
 - For best results when performing video splitting and concatenation, ensure that all frames in the source video 
   are keyframes. Videos that are not encoded with all keyframes may not split or concatenate properly with still
   images appearing at the start of sequences or audio being out of sync.
+
+
+---
+
+
+## Testing
+
+Unit tests are provided using `shunit2`. To run the tests, simply call the test script from the root directory of 
+this project:
+
+```bash
+./test/test-split-videos.sh
+```
+
+---
