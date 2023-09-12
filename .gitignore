@@ -214,6 +214,7 @@ $RECYCLE.BIN/
 .dropbox.cache
 
 ### Audio template
+*.aiff
 *.aif
 *.iff
 *.m3u

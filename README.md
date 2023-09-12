@@ -13,14 +13,15 @@ The scripts are only tested and working on macOS. They should work on Linux, but
 
 The following tools are required for these scripts to work:
 
-- `ffmpeg` 
 - `exiftool`
+- `ffmpeg` 
 - `id3lib`
+- `jq`
 
 Install using Homebrew:
 
 ```bash
-brew install ffmpeg exiftool id3lib
+brew install exiftool ffmpeg id3lib jq
 ```
 
 
