@@ -8,8 +8,6 @@
 #                                                                                       #
 #########################################################################################
 
-
-# Check for a valid number of arguments
 if [ "$#" -ne 2 ]; then
     echo "Usage: $0 <input_pattern> <output_format>"
     exit 1
@@ -17,25 +15,23 @@ fi
 
 INPUT_PATTERN=$1
 OUTPUT_FORMAT=$2
-ALLOWED_FORMATS=("aiff" "wav" "flac" "alac" "caf" "m4a")  # Add or remove allowed formats as needed
+ALLOWED_FORMATS=("aiff" "wav" "flac" "alac" "caf" "m4a")
 
-# Check if the provided output format is in the allowed list using a loop
-is_format_valid=0  # False
 
+is_format_valid=0
 for format in "${ALLOWED_FORMATS[@]}"; do
     if [[ "$format" == "$OUTPUT_FORMAT" ]]; then
-        is_format_valid=1  # True
+        is_format_valid=1
         break
     fi
 done
 
 if [[ $is_format_valid -eq 0 ]]; then
     echo "Error: Unsupported format ${OUTPUT_FORMAT}"
-    echo "Supported formats: ${ALLOWED_FORMATS[@]}"
+    echo "Supported formats: " "${ALLOWED_FORMATS[@]}"
     exit 1
 fi
 
-# Determine the codec and potentially adjust the output format based on the desired output format
 case $OUTPUT_FORMAT in
     "alac")
         CODEC="alac"
@@ -44,20 +40,17 @@ case $OUTPUT_FORMAT in
     "m4a")
         CODEC="aac"
         ;;
-    # Add more cases if needed for specific codecs
     *)
         CODEC=""
         ;;
 esac
 
-# Process the matching files
 for FILE in $INPUT_PATTERN; do
     if [[ -f $FILE ]]; then
         BASE=$(basename "$FILE")
         FILE_EXTENSION="${BASE##*.}"
         FILENAME="${BASE%.*}"
 
-        # Skip if the input file is already in the target format
         if [[ "$FILE_EXTENSION" == "$OUTPUT_FORMAT" ]]; then
             echo "Skipping $FILE, already in target format."
             continue

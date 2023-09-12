@@ -16,23 +16,19 @@
 #                                                                                       #
 #########################################################################################
 
-# Check if a prefix argument was provided
 if [ "$#" -ne 1 ]; then
     echo "Usage: $0 <prefix>"
     exit 1
 fi
 
-# Define prefix from argument
 prefix="$1"
 
-# Create a list of files to concatenate
 rm -f concat_list.txt
+
 for f in $(ls ${prefix}_*.mp4 | sort -V); do
     echo "file '$f'" >> concat_list.txt
 done
 
-# Concatenate using ffmpeg
 ffmpeg -f concat -safe 0 -i concat_list.txt -c copy output.mp4
 
-# Cleanup the list
 rm concat_list.txt

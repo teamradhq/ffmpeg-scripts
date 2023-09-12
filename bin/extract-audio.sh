@@ -11,17 +11,14 @@
 #                                                                               #
 #################################################################################
 
-# Check if the input argument is provided
 if [ -z "$1" ]; then
     echo "Usage: $0 <input_file>"
     exit 1
 fi
 
-# Extract the filename without extension
 filename=$(basename -- "$1")
 basename="${filename%.*}"
 
-# Use ffmpeg to extract and convert audio to AIFF
 ffmpeg -i "$1" -vn -c:a pcm_s16be "$basename.aiff"
 
 echo "Audio extracted to: $basename.aiff"

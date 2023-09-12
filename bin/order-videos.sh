@@ -19,10 +19,8 @@ dir_path=$(pwd)
 processed_dir="$dir_path/processed"
 counter=1
 
-# Create processed directory if it doesn't exist
 mkdir -p $processed_dir
 
-# Collect the filenames, sort by sequence and then prefix, then copy with the new name to the processed directory
 for file in $(ls $dir_path | grep -E '^v[0-9]+_[0-9]{3}\.mp4$' | sort -t "_" -k 2,2n -k 1,1); do
     new_name=$(printf "sequence_%03d.mp4" $counter)
     cp "$dir_path/$file" "$processed_dir/$new_name"
