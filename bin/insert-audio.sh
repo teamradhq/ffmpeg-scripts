@@ -5,6 +5,7 @@
 #   Insert Audio                                                              #
 #                                                                             #
 #   This script will insert the provided audio into the provided video file.  #
+#   This will be output to a new file appended with "_with_new_audio".        #
 #                                                                             #
 ###############################################################################
 
@@ -13,11 +14,11 @@ if [ -z "$1" ] || [ -z "$2" ]; then
     exit 1
 fi
 
-filename=$(basename -- "$1")
-basename="${filename%.*}"
+FILE_NAME=$(basename -- "$1")
+BASE_NAME="${FILE_NAME%.*}"
 
-output="$basename"_with_new_audio.mp4
+OUTPUT="$BASE_NAME"_with_new_audio.mp4
 
-ffmpeg -i "$1" -i "$2" -c:v copy -c:a aac -strict experimental -map 0:v:0 -map 1:a:0 "$output"
+ffmpeg -i "$1" -i "$2" -c:v copy -c:a aac -strict experimental -map 0:v:0 -map 1:a:0 "$OUTPUT"
 
-echo "Output created: $output"
+echo "Output created: $OUTPUT"

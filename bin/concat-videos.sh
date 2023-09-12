@@ -21,11 +21,11 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
-prefix="$1"
+PREFIX="$1"
 
 rm -f concat_list.txt
 
-for f in $(ls ${prefix}_*.mp4 | sort -V); do
+for f in $(ls ${PREFIX}_*.mp4 | sort -V); do
     echo "file '$f'" >> concat_list.txt
 done
 

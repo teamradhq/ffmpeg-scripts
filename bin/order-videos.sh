@@ -15,14 +15,14 @@
 #                                                                                         #
 ###########################################################################################
 
-dir_path=$(pwd)
-processed_dir="$dir_path/processed"
-counter=1
+DIR_PATH=$(pwd)
+OUT_DIR="$DIR_PATH/processed"
+COUNTER=1
 
-mkdir -p $processed_dir
+mkdir -p $OUT_DIR
 
-for file in $(ls $dir_path | grep -E '^v[0-9]+_[0-9]{3}\.mp4$' | sort -t "_" -k 2,2n -k 1,1); do
-    new_name=$(printf "sequence_%03d.mp4" $counter)
-    cp "$dir_path/$file" "$processed_dir/$new_name"
-    counter=$((counter + 1))
+for file in $(ls $DIR_PATH | grep -E '^v[0-9]+_[0-9]{3}\.mp4$' | sort -t "_" -k 2,2n -k 1,1); do
+    NEW_NAME=$(printf "sequence_%03d.mp4" $COUNTER)
+    cp "$DIR_PATH/$file" "$OUT_DIR/$NEW_NAME"
+    COUNTER=$((COUNTER + 1))
 done

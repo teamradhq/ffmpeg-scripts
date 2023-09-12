@@ -16,9 +16,9 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-filename=$(basename -- "$1")
-basename="${filename%.*}"
+FILE_NAME=$(basename -- "$1")
+BASE_NAME="${FILE_NAME%.*}"
 
-ffmpeg -i "$1" -vn -c:a pcm_s16be "$basename.aiff"
+ffmpeg -i "$1" -vn -c:a pcm_s16be "$BASE_NAME.aiff"
 
-echo "Audio extracted to: $basename.aiff"
+echo "Audio extracted to: $BASE_NAME.aiff"

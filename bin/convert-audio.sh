@@ -18,15 +18,15 @@ OUTPUT_FORMAT=$2
 ALLOWED_FORMATS=("aiff" "wav" "flac" "alac" "caf" "m4a")
 
 
-is_format_valid=0
-for format in "${ALLOWED_FORMATS[@]}"; do
-    if [[ "$format" == "$OUTPUT_FORMAT" ]]; then
-        is_format_valid=1
+IS_FORMAT_VALID=0
+for FORMAT in "${ALLOWED_FORMATS[@]}"; do
+    if [[ "$FORMAT" == "$OUTPUT_FORMAT" ]]; then
+        IS_FORMAT_VALID=1
         break
     fi
 done
 
-if [[ $is_format_valid -eq 0 ]]; then
+if [[ $IS_FORMAT_VALID -eq 0 ]]; then
     echo "Error: Unsupported format ${OUTPUT_FORMAT}"
     echo "Supported formats: " "${ALLOWED_FORMATS[@]}"
     exit 1
