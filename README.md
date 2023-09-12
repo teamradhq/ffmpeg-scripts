@@ -17,12 +17,13 @@ The following tools are required for these scripts to work:
 - `ffmpeg` 
 - `id3lib`
 - `jq`
+- `kcov`
 - `shunit2`
 
 Install using Homebrew:
 
 ```bash
-brew install exiftool ffmpeg id3lib jq shunit2
+brew install exiftool ffmpeg id3lib jq kcov shunit2
 ```
 
 ---
@@ -62,7 +63,7 @@ Unit tests are provided using `shunit2`. To run the tests, simply call the test 
 this project:
 
 ```bash
-./test/test-split-videos.sh
+./test/test-extract-tags.sh
 ```
 
 ---
