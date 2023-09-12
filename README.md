@@ -3,6 +3,30 @@
 This repository contains a collection of scripts that I use for various audio and video
 processing tasks using `ffmpeg`. 
 
+
+---
+
+
+## Requirements
+
+The scripts are only tested and working on macOS. They should work on Linux, but this is untested.
+
+The following tools are required for these scripts to work:
+
+- `ffmpeg` 
+- `exiftool`
+- `id3lib`
+
+Install using Homebrew:
+
+```bash
+brew install ffmpeg exiftool id3lib
+```
+
+
+---
+
+
 ## Installation
 
 1. Clone this repository
@@ -10,6 +34,13 @@ processing tasks using `ffmpeg`.
    ```bash
    export PATH="$PATH:/path/to/ffmpeg-scripts/bin"
    ```
+3. Ensure that the scripts are executable:
+   ```bash
+   chmod +x /path/to/ffmpeg-scripts/bin/*
+   ```
+
+---
+
 
 ## Video Processing
 
