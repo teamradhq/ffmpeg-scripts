@@ -67,3 +67,8 @@ this project:
 ```
 
 ---
+
+
+## Examples
+
+Refer to the `examples` directory for ideas on how these scripts could be used. 

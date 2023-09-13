@@ -61,12 +61,15 @@ if [ -z "$PREFIX" ]; then
   exit 1
 fi
 
-rm -f concat_list.txt
+OUTPUT=$(realpath $OUTPUT)
+LIST=concat_list.txt
+
+rm -f $LIST
 
 for f in $(ls ${PREFIX}_*.mp4 | sort -V); do
-  echo "file '$f'" >> concat_list.txt
+  echo "file '$f'" >> $LIST
 done
 
-ffmpeg -f concat -safe 0 -i concat_list.txt -c copy "$OUTPUT"
-
-rm -f concat_list.txt
+ffmpeg -f concat -safe 0 -i $LIST -c copy "$OUTPUT"
+echo "Saved to $OUTPUT";
+rm -f $LIST
