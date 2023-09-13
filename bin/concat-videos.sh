@@ -66,10 +66,12 @@ LIST=concat_list.txt
 
 rm -f $LIST
 
+echo "Concatenating video files"
+
 for f in $(ls ${PREFIX}_*.mp4 | sort -V); do
   echo "file '$f'" >> $LIST
 done
 
-ffmpeg -f concat -safe 0 -i $LIST -c copy "$OUTPUT"
+ffmpeg -f concat -safe 0 -i $LIST -c copy "$OUTPUT" > /dev/null 2>&1
 echo "Saved to $OUTPUT";
 rm -f $LIST
