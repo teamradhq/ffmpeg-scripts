@@ -9,6 +9,8 @@ source "$DIR/functions.sh"
 setUp()
 {
   cd "$FIXTURE_DIR"
+  generate_test_video v_001.mp4 black
+  generate_test_video v_002.mp4 white
 }
 
 test_exit_if_no_arguments_passed()
@@ -28,9 +30,6 @@ test_exit_if_no_arguments_passed()
 
 test_output_file_is_generated()
 {
-  generate_test_video v_001.mp4 black
-  generate_test_video v_002.mp4 white
-
   $BIN_DIR/concat-videos.sh v > /dev/null 2>&1
   actual=$?
   FILE="$FIXTURE_DIR/output.mp4"
@@ -43,10 +42,37 @@ test_output_file_is_generated()
   assertEquals 60 "$duration"
 }
 
+test_output_option_is_used() {
+    for option in "--output" "-o"; do
+        $BIN_DIR/concat-videos.sh v $option concat.mp4 > /dev/null 2>&1
+        FILE="$FIXTURE_DIR/concat.mp4"
+
+        assertEquals "Failed with option $option" 0 "${actual}"
+        assertTrue "concat.mp4 was not created using $option" "[ -f \"$FILE\" ]"
+
+        rm -f "$FILE"
+    done
+}
+
+test_prefix_option_is_used()
+{
+    for option in "--prefix" "-p"; do
+        $BIN_DIR/concat-videos.sh --prefix v > /dev/null 2>&1
+        FILE="$FIXTURE_DIR/output.mp4"
+
+        assertEquals "Failed with option $option" 0 "${actual}"
+        assertTrue "output.mp4 was not created using $option" "[ -f \"$FILE\" ]"
+
+        rm -f "$FILE"
+    done
+}
+
 tearDown() {
-  rm -f "$FIXTURE_DIR/v_001.mp4"
-  rm -f "$FIXTURE_DIR/v_002.mp4"
-  rm -f "$FIXTURE_DIR/output.mp4"
+  rm -f \
+    "$FIXTURE_DIR/v_001.mp4" \
+    "$FIXTURE_DIR/v_002.mp4" \
+    "$FIXTURE_DIR/output.mp4" \
+    "$FIXTURE_DIR/concat.mp4"
 }
 
 . shunit2
