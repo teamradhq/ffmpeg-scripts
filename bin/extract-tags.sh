@@ -25,4 +25,4 @@ EXIF_OUTPUT=$(exiftool -j "$FILE_PATH") || exit 4
 ID3_OUTPUT=$("$SCRIPT_DIR/extract-id3-tags.sh" "$FILE_PATH") || exit 4
 JSON=$(jq -n --argjson exif "$EXIF_OUTPUT" --argjson id3 "$ID3_OUTPUT" '{exif: $exif[0], id3: $id3}')
 
-echo $JSON | jq .
+echo "$JSON" | jq .

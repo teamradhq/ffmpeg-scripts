@@ -37,7 +37,7 @@ COUNTER=1
 
 for video in $(ls *.mp4 | sort); do
     OUT_FILE="split/v$(printf "%02d" $COUNTER)_%03d.mp4"
-    ffmpeg -i "$video" -c:v copy -c:a copy -f segment -segment_time $SEGMENT_DURATION -reset_timestamps 1 "$OUT_FILE" > /dev/null 2>&1
+    ffmpeg -i "$video" -c:v copy -c:a copy -f segment -segment_time "$SEGMENT_DURATION" -reset_timestamps 1 "$OUT_FILE" > /dev/null 2>&1
     COUNTER=$((COUNTER + 1))
     echo "Output sequence for $video to $OUT_FILE"
 done
