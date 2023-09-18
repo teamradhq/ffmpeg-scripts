@@ -30,7 +30,7 @@ test_exit_if_no_arguments_passed()
 
 test_output_file_is_generated()
 {
-  $BIN_DIR/concat-videos.sh v > /dev/null 2>&1
+  "$BIN_DIR/concat-videos.sh" v > /dev/null 2>&1
   actual=$?
   FILE="$FIXTURE_DIR/output.mp4"
 
@@ -44,7 +44,7 @@ test_output_file_is_generated()
 
 test_output_option_is_used() {
     for option in "--output" "-o"; do
-        $BIN_DIR/concat-videos.sh v $option concat.mp4 > /dev/null 2>&1
+        "$BIN_DIR/concat-videos.sh" v $option concat.mp4 > /dev/null 2>&1
         FILE="$FIXTURE_DIR/concat.mp4"
 
         assertEquals "Failed with option $option" 0 "${actual}"
@@ -57,7 +57,7 @@ test_output_option_is_used() {
 test_prefix_option_is_used()
 {
     for option in "--prefix" "-p"; do
-        $BIN_DIR/concat-videos.sh --prefix v > /dev/null 2>&1
+        "$BIN_DIR/concat-videos.sh" --prefix v > /dev/null 2>&1
         FILE="$FIXTURE_DIR/output.mp4"
 
         assertEquals "Failed with option $option" 0 "${actual}"
