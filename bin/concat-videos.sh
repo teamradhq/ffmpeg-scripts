@@ -68,7 +68,7 @@ rm -f "$LIST"
 
 echo "Concatenating video files to $OUTPUT"
 
-for f in $(ls "${PREFIX}_*.mp4" | sort -V); do
+for f in $(find . -name "${PREFIX}_*.mp4" | sort -V); do
   echo "file '$f'" >> "$LIST"
 done
 

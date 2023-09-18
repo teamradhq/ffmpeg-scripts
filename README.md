@@ -13,6 +13,7 @@ The scripts are only tested and working on macOS. They should work on Linux, but
 
 The following tools are required for these scripts to work:
 
+- `bash`
 - `exiftool`
 - `ffmpeg` 
 - `id3lib`
@@ -22,8 +23,13 @@ The following tools are required for these scripts to work:
 
 Install using Homebrew:
 
+### A note on `bash`
+
+Some scripts use mapfiles which is not available on older version of `bash` that ship with macOS. To avoid
+issues ensure that you have installed a newer version of `bash` using Homebrew.
+
 ```bash
-brew install exiftool ffmpeg id3lib jq kcov shunit2
+brew install bash exiftool ffmpeg id3lib jq kcov shunit2
 ```
 
 ---

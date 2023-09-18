@@ -21,7 +21,6 @@ DIR_PATH=$(pwd)/processed
 OUT_DIR=$(realpath "$DIR_PATH")
 PREFIX="sequence"
 
-# Transform long options to short ones
 args=()
 for arg; do
   case "$arg" in
@@ -32,14 +31,12 @@ for arg; do
   esac
 done
 
-# Reset the positional arguments ($1, $2, ...) to the newly transformed args array
 set -- "${args[@]}"
 
-# Parse command line arguments with getopts
 while getopts "do:p:" opt; do
     case $opt in
         d) DROP_FILES=true;;
-        o) OUT_DIR="$OPTARG";;
+        o) OUT_DIR=$(realpath "$OPTARG");;
         p) PREFIX="$OPTARG";;
         *) echo "Invalid option: -$OPTARG" >&2
            exit 1;;
@@ -59,9 +56,11 @@ do-file() {
     fi
 }
 
-for file in $(ls "$DIR_PATH" | grep -E '^v[0-9]+_[0-9]{3}\.mp4$' | sort -t "_" -k 2,2n -k 1,1); do
+mapfile -t files < <(find "$DIR_PATH" -type f -name 'v[0-9]*_[0-9][0-9][0-9].mp4' | sort -t "_" -k 2,2n -k 1,1)
+
+for file in "${files[@]}"; do
     NEW_NAME=$(printf "${PREFIX}_%03d.mp4" $COUNTER)
-    do-file "$DIR_PATH/$file" "$OUT_DIR/$NEW_NAME"
+    do-file "$file" "$OUT_DIR/$NEW_NAME"
     COUNTER=$((COUNTER + 1))
 done
 
